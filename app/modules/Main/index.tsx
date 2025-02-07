@@ -4,10 +4,6 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import { useStore } from "@/app/hooks/useStore";
-import Scrollbar from "@/app/components/Scrollbar";
-
-import Header from "@/app/modules/Header";
-import Article from "@/app/modules/Article";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({ markers: true });
@@ -30,11 +26,7 @@ function App() {
 
   return (
     <ReactLenis root>
-      <div style={{ height: 1200 }}>
-        <Header />
-        <Scrollbar />
-        <Article />
-      </div>
+      <div style={{ height: 1200 }}>11</div>
     </ReactLenis>
   );
 }
