@@ -61,10 +61,7 @@ html {
   }
 }
 
-.mew-mask{
-  mask:url('./source/mew.svg');
-  -webkit-mask:url('./source/mew.svg');
-}
+
 
 .motto__text>:not(:last-child){
   margin-bottom: 4rem;
