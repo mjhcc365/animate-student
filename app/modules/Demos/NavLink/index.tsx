@@ -127,7 +127,7 @@ const NavLink = () => {
         }}
       ></div>
       <nav>
-        {["#one", "two", "three", "four", "five"].map((keyWord) => {
+        {["one", "two", "three", "four", "five"].map((keyWord) => {
           return (
             <div onClick={() => {}} key={keyWord}>
               <a href={`#${keyWord}`}>{`Section${keyWord}`}</a>
