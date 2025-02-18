@@ -3,6 +3,8 @@
 import NavLink from "./modules/Demos/NavLink";
 import Parallax from "./modules/Demos/Parallax";
 import AirPods from "./modules/Demos/AirPods";
+import SlideCards from "./modules/Demos/SlideCards";
+// import
 
 export default function Home() {
   return (
@@ -16,7 +18,10 @@ export default function Home() {
       {/* 动画4 - 视差效果 - 滚动，对不同dom 设置不同的动画，形成视差效果 */}
       {/* <Parallax /> */}
       {/* 动画5 - 根据滚动 - 改变Image */}
-      <AirPods />
+      {/* <AirPods /> */}
+      {/*  */}
+      {/* 动画6 - 根据滚动 - 实现跑马灯效果  */}
+      <SlideCards />
     </div>
   );
 }
