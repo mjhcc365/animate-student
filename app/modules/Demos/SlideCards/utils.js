@@ -1,3 +1,6 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
 let iteration = 0; // gets iterated when we scroll all the way to the end or start and wraps around - allows us to smoothly continue the playhead scrubbing in the correct direction.
@@ -54,25 +57,6 @@ function wrapBackward(trigger) {
   trigger.scroll(trigger.end - 1);
 }
 
-// function scrubTo(totalTime) {
-//   // moves the scroll position to the place that corresponds to the totalTime value of the seamlessLoop, and wraps if necessary.
-//   let progress =
-//     (totalTime - seamlessLoop.duration() * iteration) / seamlessLoop.duration();
-//   if (progress > 1) {
-//     wrapForward(trigger);
-//   } else if (progress < 0) {
-//     wrapBackward(trigger);
-//   } else {
-//     trigger.scroll(trigger.start + progress * (trigger.end - trigger.start));
-//   }
-// }
-
-// document
-//   .querySelector(".next")
-//   .addEventListener("click", () => scrubTo(scrub.vars.totalTime + spacing));
-// document
-//   .querySelector(".prev")
-//   .addEventListener("click", () => scrubTo(scrub.vars.totalTime - spacing));
 
 function buildSeamlessLoop(items, spacing) {
   let overlap = Math.ceil(1 / spacing), // number of EXTRA animations on either side of the start/end to accommodate the seamless looping

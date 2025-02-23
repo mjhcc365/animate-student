@@ -4,7 +4,8 @@ import NavLink from "./modules/Demos/NavLink";
 import Parallax from "./modules/Demos/Parallax";
 import AirPods from "./modules/Demos/AirPods";
 import SlideCards from "./modules/Demos/SlideCards";
-// import
+
+import ThreeDemo from "./modules/ThreeDemos/index";
 
 export default function Home() {
   return (
@@ -21,7 +22,11 @@ export default function Home() {
       {/* <AirPods /> */}
       {/*  */}
       {/* 动画6 - 根据滚动 - 实现跑马灯效果  */}
-      <SlideCards />
+      {/* <SlideCards /> */}
+
+      {/* react - threejs  */}
+
+      <ThreeDemo />
     </div>
   );
 }
