@@ -69,7 +69,7 @@ const NavLink = () => {
   );
   return (
     <div ref={demoRef}>
-      <div className="border h-200"></div>
+      <div className="border h-200">border-200</div>
       <div id="one" className="description panel blue">
         <div>
           <h1>Navigation links with smooth scrolling</h1>
@@ -84,7 +84,7 @@ const NavLink = () => {
         </div>
       </div>
       <section id="two" className="panel red bg-red">
-        <span className="bg-red line line-1"></span>{" "}
+        <span className="bg-red line line-1"></span>
         <p>
           This line's animation will begin when it enters the viewport and
           finish when its top edge hits the top of the viewport, staying

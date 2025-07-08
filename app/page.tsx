@@ -4,8 +4,10 @@ import NavLink from "./modules/Demos/NavLink";
 import Parallax from "./modules/Demos/Parallax";
 import AirPods from "./modules/Demos/AirPods";
 import SlideCards from "./modules/Demos/SlideCards";
-
-import ThreeDemo from "./modules/ThreeDemos/index";
+import Baisc from "./modules/Demos/Baisc";
+import Rainbow from "./modules/Rainbow";
+import Scoll from "./modules/Scroll";
+// import ThreeDemo from "./modules/ThreeDemos/index";
 
 export default function Home() {
   return (
@@ -23,10 +25,14 @@ export default function Home() {
       {/*  */}
       {/* 动画6 - 根据滚动 - 实现跑马灯效果  */}
       {/* <SlideCards /> */}
-
       {/* react - threejs  */}
+      {/* <ThreeDemo /> */}
 
-      <ThreeDemo />
+      {/* 测试可以改变的属性  & 已经如何设置*/}
+      {/* <Baisc /> */}
+      {/* 动画7 - 根据滚动 - 实现彩虹效果 */}
+      <Rainbow />
+      {/* <Scoll /> */}
     </div>
   );
 }
