@@ -114,17 +114,15 @@ yarn build
 ```
 animate-student/
 ├── app/
-│   ├── modules/
-│   │   ├── Demos/           # 特效案例
-│   │   │   ├── AirPods/     # 滚动图片切换
-│   │   │   ├── NavLink/     # 导航链接动画
-│   │   │   ├── Parallax/    # 视差效果
-│   │   │   ├── SlideCards/  # 滑动卡片
-│   │   │   └── Basic/       # 基础动画
+│   ├── demos/               # 演示页面
+│   │   ├── AirPods/         # 滚动图片切换
+│   │   ├── Baisc/           # 基础动画
+│   │   ├── NavLink/         # 导航链接动画
+│   │   ├── Parallax/        # 视差效果
 │   │   ├── Rainbow/         # 彩虹效果
-│   │   ├── Scroll/          # 滚动动画
 │   │   └── ThreeDemos/      # Three.js 案例
 │   ├── hooks/               # 自定义钩子
+│   ├── fonts/               # 字体文件
 │   └── globals.css          # 全局样式
 ├── public/                  # 静态资源
 └── README.md               # 项目文档
