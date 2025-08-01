@@ -15,7 +15,7 @@ export default function ResponsiveExample() {
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div
               key={item}
-              className="bg-slate-800 rounded-lg p-4 md:p-6 hover:bg-slate-700 transition-colors"
+              className="bg-stone-800 rounded-lg p-4 md:p-6 hover:bg-stone-700 transition-colors"
             >
               <h3 className="text-lg md:text-xl font-semibold mb-2">
                 卡片 {item}
@@ -46,7 +46,7 @@ export default function ResponsiveExample() {
             响应式间距
           </h2>
           <div className="space-y-4 md:space-y-6 lg:space-y-8">
-            <div className="bg-slate-800 p-4 md:p-6 lg:p-8 rounded-lg">
+            <div className="bg-stone-800 p-4 md:p-6 lg:p-8 rounded-lg">
               <p className="text-sm md:text-base">
                 这个容器的内边距会根据屏幕尺寸变化
               </p>
@@ -55,19 +55,19 @@ export default function ResponsiveExample() {
         </div>
 
         {/* 响应式导航 */}
-        <nav className="mt-8 md:mt-12 bg-slate-800 rounded-lg p-4">
+        <nav className="mt-8 md:mt-12 bg-stone-800 rounded-lg p-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="mb-4 md:mb-0">
               <h3 className="text-lg font-semibold">导航菜单</h3>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 md:gap-4">
-              <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded transition-colors">
+              <button className="px-4 py-2 bg-stone-700 hover:bg-stone-600 rounded transition-colors">
                 首页
               </button>
-              <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded transition-colors">
+              <button className="px-4 py-2 bg-stone-700 hover:bg-stone-600 rounded transition-colors">
                 关于
               </button>
-              <button className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded transition-colors">
+              <button className="px-4 py-2 bg-stone-700 hover:bg-stone-600 rounded transition-colors">
                 联系
               </button>
             </div>
@@ -83,7 +83,7 @@ export default function ResponsiveExample() {
             {[1, 2, 3].map((item) => (
               <div
                 key={item}
-                className="aspect-video bg-slate-700 rounded-lg flex items-center justify-center"
+                className="aspect-video bg-stone-700 rounded-lg flex items-center justify-center"
               >
                 <span className="text-slate-400">图片 {item}</span>
               </div>
@@ -96,8 +96,8 @@ export default function ResponsiveExample() {
           <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
             响应式表格
           </h2>
-          <table className="w-full bg-slate-800 rounded-lg overflow-hidden">
-            <thead className="bg-slate-700">
+          <table className="w-full bg-stone-800 rounded-lg overflow-hidden">
+            <thead className="bg-stone-700">
               <tr>
                 <th className="px-4 py-3 text-left text-sm md:text-base">
                   名称
@@ -114,7 +114,7 @@ export default function ResponsiveExample() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-slate-700">
+              <tr className="border-t border-stone-700">
                 <td className="px-4 py-3 text-sm md:text-base">项目 A</td>
                 <td className="px-4 py-3 text-sm md:text-base hidden md:table-cell">
                   这是一个示例项目

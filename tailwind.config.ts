@@ -6,6 +6,7 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: ["text-stone-400", "border-[#efeeec]", "bg-[#efeeec]"],
   theme: {
     screens: {
       sm: "640px",
