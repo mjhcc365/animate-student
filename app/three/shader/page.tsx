@@ -14,6 +14,7 @@ const patterns = [
   { id: "01", name: "彩虹渐变" },
   { id: "02", name: "径向条纹" },
   { id: "03", name: "棋盘波浪" },
+  { id: "04", name: "横向渐变" },
 ];
 
 // 缓存已加载的shader
@@ -279,7 +280,7 @@ export default function ShaderDemo() {
     <div className="flex flex-col items-center gap-4 p-4">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <label htmlFor="pattern-select" className="text-sm font-medium">
+          <label htmlFor="pattern-select" className="text-lg font-medium">
             选择Pattern:
           </label>
           <select
