@@ -15,6 +15,7 @@ const patterns = [
   { id: "02", name: "径向条纹" },
   { id: "03", name: "棋盘波浪" },
   { id: "04", name: "横向渐变" },
+  { id: "05", name: "raging-sea" },
 ];
 
 // 缓存已加载的shader
