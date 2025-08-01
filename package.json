@@ -16,7 +16,7 @@
     "@react-three/drei": "^10.5.1",
     "@react-three/fiber": "^9.0.4",
     "@types/lodash": "^4.17.14",
-    "@types/three": "^0.173.0",
+    "@types/three": "^0.178.1",
     "cannon-es": "^0.20.0",
     "framer-motion": "^12.23.6",
     "gsap": "^3.12.7",
@@ -43,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.3",
     "postcss": "^8",
+    "raw-loader": "^4.0.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
