@@ -3,7 +3,6 @@
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { useGSAP } from "@gsap/react";
 
 import "./index.css";
