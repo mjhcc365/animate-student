@@ -1,6 +1,6 @@
-"use client";
-import IndexPage from "./pages/index";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return <IndexPage />;
+export default function RootPage() {
+  // 重定向到默认语言（中文）
+  redirect("/zh");
 }

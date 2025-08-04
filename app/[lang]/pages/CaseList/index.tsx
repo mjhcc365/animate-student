@@ -11,10 +11,12 @@ interface CaseType {
 
 interface CaseListProps {
   caseArray: CaseType[];
+  dict: any;
 }
 
 const CaseList = (props: CaseListProps) => {
-  const { caseArray = [] } = props;
+  const { caseArray = [], dict } = props;
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-1">
       {caseArray.map((demo: CaseType) => (
@@ -28,7 +30,7 @@ const CaseList = (props: CaseListProps) => {
           </div>
           <div className="flex-shrink-0">
             <span className="border border-stone-800 text-xs font-medium text-slate-300 bg-stone-700 px-3 py-1 rounded">
-              NEW RESOURCE
+              {demo.isNew ? dict?.demos?.status?.new || "NEW" : ""}
             </span>
           </div>
           {/* Content */}
@@ -47,7 +49,9 @@ const CaseList = (props: CaseListProps) => {
               </div>
             </div>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs text-stone-400">CATEGORY</span>
+              <span className="text-xs text-stone-400">
+                {dict?.common?.category || "CATEGORY"}
+              </span>
               <span className="text-sm font-semibold text-white">
                 {demo.category}
               </span>

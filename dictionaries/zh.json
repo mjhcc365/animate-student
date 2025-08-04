@@ -1,0 +1,106 @@
+{
+  "navigation": {
+    "home": "首页",
+    "demos": "演示",
+    "about": "关于",
+    "contact": "联系",
+    "languageSwitch": "切换语言"
+  },
+  "hero": {
+    "title": "现代网站动画效果",
+    "subtitle": "收集和展示最新的网站动画技术",
+    "description": "探索各种动画效果，从基础的CSS动画到复杂的Three.js 3D场景",
+    "cta": "开始探索",
+    "scrollHint": "向下滚动查看更多"
+  },
+  "demos": {
+    "categories": {
+      "cssAnimations": "CSS动画",
+      "productShowcase": "产品展示",
+      "fundamentals": "基础",
+      "navigation": "导航",
+      "scrollEffects": "滚动效果",
+      "3dGraphics": "3D图形",
+      "shaderEffects": "着色器效果",
+      "glslShaders": "GLSL着色器"
+    },
+    "items": {
+      "rainbow": {
+        "name": "彩虹动画",
+        "description": "彩虹色彩动画效果展示"
+      },
+      "airpods": {
+        "name": "AirPods展示",
+        "description": "AirPods产品展示动画"
+      },
+      "basic": {
+        "name": "基础演示",
+        "description": "基础动画效果演示"
+      },
+      "navlink": {
+        "name": "导航链接",
+        "description": "导航链接动画效果"
+      },
+      "parallax": {
+        "name": "视差滚动",
+        "description": "视差滚动效果演示"
+      },
+      "threejs": {
+        "name": "Three.js演示",
+        "description": "Three.js 3D图形演示"
+      },
+      "threejsBasic": {
+        "name": "Three.js基础",
+        "description": "Three.js基础场景"
+      },
+      "oceanScene": {
+        "name": "海洋场景",
+        "description": "海洋波浪着色器效果"
+      },
+      "shaderPatterns": {
+        "name": "着色器图案",
+        "description": "GLSL着色器图案集合"
+      }
+    },
+    "status": {
+      "new": "新",
+      "updated": "更新",
+      "popular": "热门"
+    },
+    "timeAgo": {
+      "days": "天前",
+      "weeks": "周前",
+      "months": "个月前"
+    }
+  },
+  "common": {
+    "siteTitle": "网站特效案例库",
+    "logoAlt": "Animate Student Logo",
+    "loading": "加载中...",
+    "error": "错误",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "关闭",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "language": "语言",
+    "theme": "主题",
+    "settings": "设置",
+    "category": "分类"
+  },
+  "footer": {
+    "description": "一个展示现代网站动画技术的平台",
+    "links": {
+      "github": "GitHub",
+      "documentation": "文档",
+      "examples": "示例"
+    }
+  }
+}

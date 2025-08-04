@@ -1,0 +1,106 @@
+{
+  "navigation": {
+    "home": "Home",
+    "demos": "Demos",
+    "about": "About",
+    "contact": "Contact",
+    "languageSwitch": "Switch Language"
+  },
+  "hero": {
+    "title": "Modern Website Animations",
+    "subtitle": "Collection and showcase of latest website animation techniques",
+    "description": "Explore various animation effects, from basic CSS animations to complex Three.js 3D scenes",
+    "cta": "Start Exploring",
+    "scrollHint": "Scroll down to see more"
+  },
+  "demos": {
+    "categories": {
+      "cssAnimations": "CSS Animations",
+      "productShowcase": "Product Showcase",
+      "fundamentals": "Fundamentals",
+      "navigation": "Navigation",
+      "scrollEffects": "Scroll Effects",
+      "3dGraphics": "3D Graphics",
+      "shaderEffects": "Shader Effects",
+      "glslShaders": "GLSL Shaders"
+    },
+    "items": {
+      "rainbow": {
+        "name": "Rainbow Demo",
+        "description": "Rainbow color animation effects showcase"
+      },
+      "airpods": {
+        "name": "AirPods Demo",
+        "description": "AirPods product showcase animation"
+      },
+      "basic": {
+        "name": "Basic Demo",
+        "description": "Basic animation effects demonstration"
+      },
+      "navlink": {
+        "name": "NavLink Demo",
+        "description": "Navigation link animation effects"
+      },
+      "parallax": {
+        "name": "Parallax Demo",
+        "description": "Parallax scrolling effects demonstration"
+      },
+      "threejs": {
+        "name": "Three.js Demos",
+        "description": "Three.js 3D graphics demonstration"
+      },
+      "threejsBasic": {
+        "name": "Three.js Basic",
+        "description": "Three.js basic scene"
+      },
+      "oceanScene": {
+        "name": "Ocean Scene",
+        "description": "Ocean wave shader effects"
+      },
+      "shaderPatterns": {
+        "name": "Shader Patterns",
+        "description": "GLSL shader patterns collection"
+      }
+    },
+    "status": {
+      "new": "New",
+      "updated": "Updated",
+      "popular": "Popular"
+    },
+    "timeAgo": {
+      "days": "days ago",
+      "weeks": "weeks ago",
+      "months": "months ago"
+    }
+  },
+  "common": {
+    "siteTitle": "Animation Student",
+    "logoAlt": "Animate Student Logo",
+    "loading": "Loading...",
+    "error": "Error",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "language": "Language",
+    "theme": "Theme",
+    "settings": "Settings",
+    "category": "Category"
+  },
+  "footer": {
+    "description": "A platform showcasing modern website animation techniques",
+    "links": {
+      "github": "GitHub",
+      "documentation": "Documentation",
+      "examples": "Examples"
+    }
+  }
+}

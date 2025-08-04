@@ -18,7 +18,7 @@ const Rainbow = () => {
   useGSAP(() => {
     // 只查找 demoRef 范围内的 .circle，避免全局查找
     const circles = gsap.utils.toArray<HTMLElement>(".circle", demoRef.current);
-    const simplex = new createNoise2D();
+    const simplex = createNoise2D();
 
     const main = gsap.timeline({
       scrollTrigger: {
