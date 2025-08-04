@@ -14,7 +14,7 @@ const Header = () => {
     // 当滚动位置小于100且当前未放大时
     if (!shouldEnlarge && !isEnlarged.current) {
       gsap.to(headerRef.current, {
-        scale: 1.3,
+        scale: 1.1,
         duration: 1,
         ease: "power2.out",
         transformOrigin: "center center",
@@ -39,7 +39,7 @@ const Header = () => {
       ref={headerRef}
       className="border-b border-stone-800 bg-stone-900/80 backdrop-blur-sm sticky top-0 z-50"
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="flex w-full  h-auto py-4 gap-4">
           <div className="flex w-full justify-between items-center space-x-3">
             <Image
