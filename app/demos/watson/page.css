@@ -1,0 +1,17 @@
+.title-letters {
+    letter-spacing: -0.018em;
+    /* word-spacing: -0.2em; */
+  }
+  
+.title-letters span {
+    display: inline-block;
+    margin-right: -0.05em;
+    transform: scaleX(0.95);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.title-letters span:hover {
+    transform: scaleX(1) scale(1.05);
+}

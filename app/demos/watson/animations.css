@@ -1,0 +1,78 @@
+/* Watson Page Animation Styles */
+
+
+
+.description-text {
+  letter-spacing: -0.02em;
+  word-spacing: -0.05em;
+}
+
+.description-text span {
+  margin-right: -0.02em;
+}
+
+.emoji-animation {
+  display: inline-block;
+  transform-origin: center;
+}
+
+/* Emoji交替出现动画 */
+.emoji-container {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+}
+
+.emoji {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.5) rotate(-10deg);
+}
+
+
+.icon-animation {
+  display: inline-block;
+  transform-origin: center;
+}
+
+/* 图标交替出现动画 */
+.icon-container {
+  position: relative;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+.icon-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0.5) rotate(-10deg);
+}
+
+.text-underline {
+  position: relative;
+  --underline-scale: 0;
+}
+
+.text-underline::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(var(--underline-scale, 0));
+  transform-origin: left;
+  transition: transform 0.3s ease;
+} 
