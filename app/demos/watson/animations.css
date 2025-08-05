@@ -74,5 +74,4 @@
   background-color: currentColor;
   transform: scaleX(var(--underline-scale, 0));
   transform-origin: left;
-  transition: transform 0.3s ease;
 } 

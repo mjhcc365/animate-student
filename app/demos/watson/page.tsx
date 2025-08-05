@@ -1,20 +1,21 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./fonts.css";
 import "./animations.css";
 import "./page.css";
 
-// 注册ScrollTrigger插件
-gsap.registerPlugin(ScrollTrigger);
-
 const Watson = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const bottomSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 创建主时间线
+    const mainTl = gsap.timeline();
+
     // 标题动画
     if (titleRef.current) {
       const titleLetters = titleRef.current.querySelectorAll("span");
@@ -27,46 +28,15 @@ const Watson = () => {
         scale: 0.5,
       });
 
-      // 创建标题动画时间线
-      const titleTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
       // 标题字母逐个出现动画
-      titleTl.to(titleLetters, {
+      mainTl.to(titleLetters, {
         opacity: 1,
         y: 0,
         rotationX: 0,
         scale: 1,
-        duration: 1.2,
+        duration: 0.06,
         stagger: 0.1,
         ease: "back.out(1.7)",
-      });
-
-      // 为每个字母添加悬停动画
-      titleLetters.forEach((letter) => {
-        letter.addEventListener("mouseenter", () => {
-          gsap.to(letter, {
-            scale: 1.2,
-            rotationY: 15,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
-
-        letter.addEventListener("mouseleave", () => {
-          gsap.to(letter, {
-            scale: 1,
-            rotationY: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
       });
     }
 
@@ -89,28 +59,22 @@ const Watson = () => {
         "--underline-scale": 0,
       });
 
-      // 创建动画时间线
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: "top 85%",
-          end: "bottom 15%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
       // 为每个文字元素添加动画
-      tl.to(textElements, {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 1.5,
-        stagger: 0.08,
-        ease: "power3.out",
-      });
+      mainTl.to(
+        textElements,
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.3,
+          stagger: 0.05,
+          ease: "power3.out",
+        },
+        "-=0.5"
+      );
 
       // 为下划线元素添加特殊动画
-      tl.to(
+      mainTl.to(
         underlineElements,
         {
           "--underline-scale": 1,
@@ -119,7 +83,7 @@ const Watson = () => {
           ease: "power2.out",
         },
         "-=0.3"
-      ); // 稍微提前开始下划线动画
+      );
 
       // 为表情符号添加交替出现动画
       const emojiContainer =
@@ -203,8 +167,8 @@ const Watson = () => {
             },
             "+=1"
           );
-        // 将emoji动画添加到主时间线;
-        tl.add(emojiTl, "-=0.3");
+        // 将emoji动画添加到主时间线
+        mainTl.add(emojiTl, "-=0.3");
       }
 
       // 为图标容器添加交替出现动画
@@ -290,22 +254,65 @@ const Watson = () => {
             "+=1"
           );
         // 将图标动画添加到主时间线
-        tl.add(iconTl, "-=0.3");
+        mainTl.add(iconTl, "-=0.3");
+      }
+    }
+    // Call to Action 动画 - 使用同一个 timeline
+    // if (ctaRef.current) {
+    //   const ctaLink = ctaRef.current.querySelector("a");
+
+    //   if (ctaLink) {
+    //     // 设置初始状态
+    //     gsap.set(ctaLink, {
+    //       opacity: 0,
+    //       y: 30,
+    //       scale: 0.9,
+    //     });
+
+    //     // CTA链接动画 - 添加到主时间线
+    //     mainTl.to(
+    //       ctaLink,
+    //       {
+    //         opacity: 1,
+    //         y: 0,
+    //         scale: 1,
+    //         duration: 1,
+    //         ease: "back.out(1.7)",
+    //       },
+    //       "-=0.5"
+    //     );
+    //   }
+    // }
+
+    // Bottom Section 动画 - 使用同一个 timeline
+    if (bottomSectionRef.current) {
+      const leftColumn = bottomSectionRef.current.querySelector("#left-column");
+      const leftContent = leftColumn?.querySelectorAll(".line-animate");
+
+      if (leftContent && leftContent.length > 0) {
+        // 设置初始状态
+        gsap.set(leftContent, {
+          opacity: 0,
+          y: 40,
+          rotationX: 20,
+        });
+        // 创建独立的时间线
+        const leftContentTl = gsap.timeline();
+        // 左列内容动画
+        leftContentTl.to(leftContent, {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 1.5,
+          stagger: 0.08,
+          ease: "power3.out",
+        });
       }
     }
 
     // 清理函数
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-      // 清理标题字母的事件监听器
-      if (titleRef.current) {
-        const titleLetters = titleRef.current.querySelectorAll("span");
-        titleLetters.forEach((letter) => {
-          letter.removeEventListener("mouseenter", () => {});
-          letter.removeEventListener("mouseleave", () => {});
-        });
-      }
+      mainTl.kill();
     };
   }, []);
 
@@ -387,62 +394,79 @@ const Watson = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mb-16">
-          <a
-            href="#"
-            className="text-xl font-watson-medium md:text-2xl  hover:no-underline transition-all"
-          >
+        <div ref={ctaRef} className="text-center mb-16">
+          <a href="#" className="text-xl font-watson-medium md:text-2xl">
             More (About) Us →
           </a>
         </div>
 
         {/* Bottom Section - Two Columns */}
-        <div className="grid md:grid-cols-2 gap-16 items-start">
+        <div
+          ref={bottomSectionRef}
+          className="grid grid-flow-col bottom-section gap-4 items-start"
+        >
           {/* Left Column - Recent Content */}
-          <div>
-            {/* <div>
+          <div id="left-column" className="font-watson-medium">
+            <div className="line-animate">
               <h2 className="text-sm font-watson-bold mb-6">(Recently)</h2>
-              <div className="text-sm font-watson-bold mb-6">LA + London</div>
-            </div> */}
-            <div className="space-y-6">
-              <div>
-                <p className="text-lg leading-relaxed mb-4">
-                  We're searching for an accomplished Art Director and Motion
-                  designer.
-                  <a href="#" className="underline hover:no-underline ml-2">
+            </div>
+            <div>
+              <div className="text-lg leading-tight mb-4">
+                <div className="line-animate">We're searching for an </div>
+                <div className="line-animate">
+                  accomplished Art Director and{" "}
+                </div>
+                <div className="line-animate">
+                  Motion designer.
+                  <a href="#" className="underline ml-2">
                     Learn more →
                   </a>
-                </p>
+                </div>
               </div>
-
-              <div>
-                <p className="text-lg leading-relaxed">
-                  Recent campaigns include James Gunn & WB's "Superman", A24's
-                  "Eddington", and Tom Cruise's "Mission Impossible, The Final
-                  Reckoning."
-                </p>
+              <div className="text-lg leading-tight break-all">
+                <div className="line-animate">Recent campaigns include Jam</div>
+                <div className="line-animate">
+                  es Gunn & WB's "Superman", A2
+                </div>
+                <div className="line-animate">
+                  4's "Eddington", and Tom Cruis
+                </div>
+                <div className="line-animate">
+                  e's "Mission Impossible, The Fin
+                </div>
+                <div className="line-animate">al Reckoning."</div>
+              </div>
+            </div>
+            <div className="mt-16 pt-4 leading-tight border-gray-800 font-watson-caption ">
+              <div className="foot-small-font space-y-4 font-watson-medium ">
+                <div className="line-animate">(CONTACT)</div>
+                <div>
+                  <div className="line-animate">NEW BUSINESS:</div>
+                  <div className="line-animate">NEWBUSINESS@WATSONDG.COM</div>
+                </div>
+                <div>
+                  <div className="line-animate">ADDRESS </div>
+                  <div className="line-animate">
+                    5900 WILSHIRE BLVD, STE. 2050
+                  </div>
+                  <div className="line-animate">LOS ANGELES, CA 90036</div>
+                </div>
+                <div>
+                  <div className="line-animate">PHONE:</div>
+                  <div className="line-animate">+1 323 465 9225</div>
+                </div>
               </div>
             </div>
           </div>
-
           {/* Right Column - Location and Image */}
-          <div className="flex flex-col items-end">
+          <div className="relative h-full flex-col items-end">
+            <div className="text-sm font-watson-bold mb-6">LA + London</div>
             {/* Placeholder for the photograph */}
-            <div className="w-48 h-32 bg-gray-800 rounded-lg flex items-center justify-center">
+            <div className="absolute bottom-0 right-0 w-full h-44 bg-gray-800 rounded-lg flex items-center justify-center">
               <span className="text-gray-400 text-sm">
                 Photo: Three women with magazines
               </span>
             </div>
-          </div>
-        </div>
-
-        {/* Footer Contact Information */}
-        <div className="mt-16 pt-8 border-t border-gray-800">
-          <div className="text-sm space-y-1 font-watson-caption">
-            <div>(CONTACT)</div>
-            <div>NEW BUSINESS:</div>
-            <div className="font-mono">NEWBUSINESS@WATSONDG.COM</div>
-            <div>ADDRESS</div>
           </div>
         </div>
       </div>
