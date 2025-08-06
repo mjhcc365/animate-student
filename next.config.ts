@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
           loaders: ["raw-loader"],
           as: "*.js",
         },
+        "*.woff.mjs": {
+          loaders: ["raw-loader"],
+          as: "*.js",
+        },
       },
     },
   },

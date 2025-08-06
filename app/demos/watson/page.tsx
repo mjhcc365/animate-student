@@ -34,7 +34,7 @@ const Watson = () => {
         y: 0,
         rotationX: 0,
         scale: 1,
-        duration: 0.06,
+        duration: 0.5,
         stagger: 0.1,
         ease: "back.out(1.7)",
       });
@@ -423,7 +423,7 @@ const Watson = () => {
                   </a>
                 </div>
               </div>
-              <div className="text-lg leading-tight break-all">
+              <div style={{}} className="text-lg leading-tight break-all">
                 <div className="line-animate">Recent campaigns include Jam</div>
                 <div className="line-animate">
                   es Gunn & WB's "Superman", A2
