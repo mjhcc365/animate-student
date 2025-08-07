@@ -1,7 +1,7 @@
 "use client";
 
 import * as THREE from "three";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
 import {
   OrbitControls,
   TransformControls,
@@ -20,11 +20,15 @@ import {
   Environment,
   Lightformer,
   Stage,
+  useGLTF,
+  Clone,
+  useAnimations,
 } from "@react-three/drei";
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, Suspense } from "react";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
-
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import "./page.css";
 
 const verticesCount = 50;
@@ -318,6 +322,89 @@ const StageDemo = () => {
   );
 };
 
+const Placeholder = () => {
+  return (
+    <mesh>
+      <boxGeometry />
+      <meshStandardMaterial color="mediumpurple" />
+    </mesh>
+  );
+};
+
+const ModelDemo = () => {
+  // const model = useLoader(
+  //   GLTFLoader,
+  //   "/FlightHelmet/glTF/FlightHelmet.gltf",
+  //   (loader) => {
+  //     const dracoLoader = new DRACOLoader();
+  //     dracoLoader.setDecoderPath("./draco/");
+  //     loader.setDRACOLoader(dracoLoader);
+  //   }
+  // );
+  const model = useGLTF("/hamburger-draco.glb");
+  return (
+    <>
+      <Clone object={model.scene} scale={0.3} position={[0, -1, 0]} />;
+      <Clone object={model.scene} scale={0.3} position={[3, -1, 0]} />;
+      <Clone object={model.scene} scale={0.3} position={[-3, -1, 0]} />;
+      {/* <primitive object={model.scene} scale={0.3} position={[0, -1, 0]} />; */}
+    </>
+  );
+};
+
+const FoxDemo = () => {
+  const fox = useGLTF("/Fox/glTF/Fox.gltf");
+  const animations = useAnimations(fox.animations, fox.scene);
+  const { animationName } = useControls({
+    animationName: { options: animations.names },
+  });
+
+  useEffect(() => {
+    if (!animations.actions || !animationName) return;
+    const action = animations.actions[animationName];
+    // 播放选中的动画
+    action?.reset().fadeIn(0.5).play();
+    // 清理函数：组件卸载时停止动画
+    return () => {
+      action?.stop();
+    };
+  }, [animationName, animations.actions]);
+
+  return <primitive object={fox.scene} scale={0.05} position={[0, -2, 0]} />;
+};
+
+// useGLTF.preload("/hamburger-draco.glb");
+const LoadModals = () => {
+  // const modal = useLoader(GLTFLoader, "/hamburger.glb");
+  // const dracoModal = useLoader(GLTFLoader, "/hamburger-draco.glb", (loader) => {
+  //   const dracoLoader = new DRACOLoader();
+  //   dracoLoader.setDecoderPath("/draco/");
+  //   dracoLoader.preload();
+  //   loader.setDRACOLoader(dracoLoader);
+  // });
+
+  // console.log("===>gltf", dracoModal);
+
+  return (
+    <>
+      <Perf position="top-left" />
+      <OrbitControls />
+      <ambientLight intensity={1.5} />
+      <directionalLight position={[1, 2, 3]} intensity={4.5} />
+      {/* <Suspense fallback={<Placeholder />}>
+        <ModelDemo />
+      </Suspense> */}
+      <Suspense fallback={<Placeholder />}>
+        <FoxDemo />
+      </Suspense>
+      <mesh position={[0, -2, 0]} scale={10} rotation-x={-Math.PI / 2}>
+        <planeGeometry />
+        <meshStandardMaterial color="greenyellow" side={THREE.DoubleSide} />
+      </mesh>
+    </>
+  );
+};
+
 const ThreeDemos = () => {
   const ref = useRef<THREE.Mesh>(null!);
 
@@ -335,6 +422,7 @@ const ThreeDemos = () => {
       {/*   <EnvironmentDemo /> */}
       {/* <StageDemo /> */}
       {/* <SkyDemo /> */}
+      <LoadModals />
     </Canvas>
   );
 };
