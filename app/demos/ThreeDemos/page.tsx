@@ -51,7 +51,7 @@ const Cube = () => {
     <>
       {/* @ts-ignore */}
       {/* <orbitControls args={[camera, gl.domElement]} /> */}
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       <TransformControls position={[-2, 0, 0]} mode="translate">
         <mesh>
           <boxGeometry />

@@ -5,17 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["mew.xyz", "www.datocms-assets.com"], // 在这里添加你的域名
   },
-  experimental: {
-    turbo: {
-      rules: {
-        "*.{glsl,vs,fs,vert,frag}": {
-          loaders: ["raw-loader"],
-          as: "*.js",
-        },
-        "*.woff.mjs": {
-          loaders: ["raw-loader"],
-          as: "*.js",
-        },
+  turbopack: {
+    rules: {
+      "*.{glsl,vs,fs,vert,frag}": {
+        loaders: ["raw-loader"],
+        as: "*.js",
       },
     },
   },
