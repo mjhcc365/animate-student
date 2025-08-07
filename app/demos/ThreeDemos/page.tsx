@@ -23,8 +23,10 @@ import {
   useGLTF,
   Clone,
   useAnimations,
+  Text3D,
+  useMatcapTexture,
 } from "@react-three/drei";
-import { useRef, useEffect, useMemo, Suspense } from "react";
+import { useRef, useEffect, useMemo, Suspense, useState } from "react";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -405,6 +407,51 @@ const LoadModals = () => {
   );
 };
 
+const Text3DDemo = () => {
+  const [matcap] = useMatcapTexture("7877EE_D87FC5_75D9C7_1C78C0", 256);
+
+  const [torusGeometry, setTorusGeometry] = useState();
+
+  return (
+    <>
+      <Perf position="top-left" />
+      <OrbitControls makeDefault />
+      {/* <ambientLight intensity={0.5} /> */}
+      {/* <directionalLight position={[10, 10, 5]} intensity={1} /> */}
+      <Text3D font="/fonts/helvetiker_regular.typeface.json">
+        Hello World
+        <meshMatcapMaterial matcap={matcap} />
+      </Text3D>
+      {/* <mesh>
+        <torusGeometry />
+        <meshMatcapMaterial matcap={matcap} />
+      </mesh> */}
+
+      <torusGeometry ref={setTorusGeometry} />
+      {new Array(100).fill(0).map((_, i) => (
+        <mesh
+          key={i}
+          geometry={torusGeometry}
+          position={[
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 10,
+          ]}
+          scale={0.2 + Math.random() * 0.5}
+          rotation={[
+            Math.random() * 2 * Math.PI,
+            Math.random() * 2 * Math.PI,
+            0,
+          ]}
+        >
+          {/* <torusGeometry /> */}
+          <meshMatcapMaterial matcap={matcap} />
+        </mesh>
+      ))}
+    </>
+  );
+};
+
 const ThreeDemos = () => {
   const ref = useRef<THREE.Mesh>(null!);
 
@@ -422,7 +469,8 @@ const ThreeDemos = () => {
       {/*   <EnvironmentDemo /> */}
       {/* <StageDemo /> */}
       {/* <SkyDemo /> */}
-      <LoadModals />
+      {/* <LoadModals /> */}
+      <Text3DDemo />
     </Canvas>
   );
 };
