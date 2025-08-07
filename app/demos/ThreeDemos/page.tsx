@@ -11,6 +11,15 @@ import {
   Float,
   MeshReflectorMaterial,
   useHelper,
+  BakeShadows,
+  SoftShadows,
+  ContactShadows,
+  AccumulativeShadows,
+  RandomizedLight,
+  Sky,
+  Environment,
+  Lightformer,
+  Stage,
 } from "@react-three/drei";
 import { useRef, useEffect, useMemo } from "react";
 import { useControls } from "leva";
@@ -115,34 +124,196 @@ const DemoBaisc = () => {
   );
 };
 
-const Environment = () => {
+/** SKY && SHADOWS */
+const SkyDemo = () => {
   const directionalLightRef = useRef<THREE.DirectionalLight>(null!);
+
+  // 使用Leva控制Sky太阳位置
+  const sunPosition = useControls("Sun Position", {
+    x: { value: 1, min: -10, max: 10, step: 0.1 },
+    y: { value: 2, min: -10, max: 10, step: 0.1 },
+    z: { value: 3, min: -10, max: 10, step: 0.1 },
+  });
 
   useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1);
 
   return (
     <>
+      {/* 如果场景是静态的，使用它可以显著提升性能 */}
+      {/* <BakeShadows /> */}
+      {/* <SoftShadows size={25} samples={10} focus={0} /> */}
+      <Sky sunPosition={[sunPosition.x, sunPosition.y, sunPosition.z]} />
       <OrbitControls />
-      <ambientLight intensity={1.5} />
+      <ambientLight intensity={2.5} />
       <directionalLight
+        castShadow
         ref={directionalLightRef}
-        position={[1, 1, 3]}
-        intensity={4.5}
+        position={[sunPosition.x, sunPosition.y, sunPosition.z]}
+        intensity={2.5}
       />
+      {/* <AccumulativeShadows
+        position={[0, -0.99, 0]}
+        scale={10}
+        color="#316d39"
+        opacity={0.8}
+        frames={Infinity}
+        temporal
+        blend={100}
+      >
+        <RandomizedLight
+          amount={8}
+          radius={1}
+          ambient={0.5}
+          intensity={4.5}
+          position={[1, 2, 3]}
+          bias={0.001}
+          // position={[1, 2, 3]}
+        />
+        <directionalLight
+          castShadow
+          ref={directionalLightRef}
+          position={[1, 2, 3]}
+          intensity={4.5}
+          // shadow-mapSize={[1024, 1024]}
+          // // shadow-mapSize={[1024, 1024]}
+          // shadow-camera-near={1}
+          // shadow-camera-far={10}
+          // shadow-camera-top={5}
+          // shadow-camera-right={5}
+          // shadow-camera-bottom={-5}
+          // shadow-camera-left={-5}
+        />
+      </AccumulativeShadows> */}
+
       <color args={["ivory"]} attach="background" />
-      <mesh position={[2, 0, 0]} scale={1.5}>
+      <mesh castShadow position={[2, 0, 0]} scale={1.5}>
         <boxGeometry />
         <meshStandardMaterial color="mediumpurple" />
       </mesh>
-      <mesh position={[-2, 0, 0]}>
+      <mesh castShadow position={[-2, 0, 0]}>
         <sphereGeometry />
         <meshStandardMaterial color="orange" />
       </mesh>
-
-      <mesh position={[0, -1, 0]} scale={10} rotation-x={-Math.PI / 2}>
+      <mesh
+        receiveShadow
+        position={[0, -1, 0]}
+        scale={10}
+        rotation-x={-Math.PI / 2}
+      >
         <planeGeometry />
         <meshStandardMaterial color="lightgreen" side={THREE.DoubleSide} />
       </mesh>
+    </>
+  );
+};
+
+// const
+// 环境贴图
+const EnvironmentDemo = () => {
+  const { envMapIntensity } = useControls("environment map", {
+    envMapIntensity: { value: 1, min: 0, max: 12 },
+  });
+  const directionalLightRef = useRef<THREE.DirectionalLight>(null!);
+
+  // 使用Leva控制Sky太阳位置
+  const sunPosition = useControls("Sun Position", {
+    x: { value: 1, min: -10, max: 10, step: 0.1 },
+    y: { value: 2, min: -10, max: 10, step: 0.1 },
+    z: { value: 3, min: -10, max: 10, step: 0.1 },
+  });
+  const scene = useThree((state) => state.scene);
+
+  useEffect(() => {
+    scene.environmentIntensity = envMapIntensity;
+  }, [envMapIntensity]);
+
+  return (
+    <>
+      <Sky sunPosition={[sunPosition.x, sunPosition.y, sunPosition.z]} />
+      <Environment
+        background
+        // files={[
+        //   "/environmentMaps/2/px.jpg",
+        //   "/environmentMaps/2/nx.jpg",
+        //   "/environmentMaps/2/py.jpg",
+        //   "/environmentMaps/2/ny.jpg",
+        //   "/environmentMaps/2/pz.jpg",
+        //   "/environmentMaps/2/nz.jpg",
+        // ]}
+        preset="sunset"
+        resolution={32} // 分辨率
+        ground={{
+          height: 7,
+          radius: 28,
+          scale: 100,
+        }}
+        // files="/environmentMaps/the_sky_is_on_fire_2k.hdr"
+      >
+        {/* <color args={["#000000"]} attach="background" /> */}
+        {/* <mesh position-z={-3} scale={10}>
+          <planeGeometry />
+          <meshBasicMaterial color={[10, 0, 0]} />
+        </mesh> */}
+        {/* <Lightformer
+          position-z={-5}
+          scale={5}
+          color="red"
+          intensity={10}
+          form="ring"
+        /> */}
+      </Environment>
+      <ContactShadows
+        position={[0, -0.99, 0]}
+        scale={10}
+        resolution={512}
+        far={5}
+        color={"#316d39"}
+        opacity={0.8}
+        blur={1}
+      />
+      <OrbitControls />
+      <directionalLight
+        castShadow
+        position={[sunPosition.x, sunPosition.y, sunPosition.z]}
+        intensity={2.5}
+      />
+      <mesh castShadow position={[2, 0, 0]} scale={1.5}>
+        <boxGeometry />
+        <meshStandardMaterial color="mediumpurple" />
+      </mesh>
+      <mesh castShadow position={[-2, 0, 0]}>
+        <sphereGeometry />
+        <meshStandardMaterial color="orange" />
+      </mesh>
+      {/* <mesh
+        receiveShadow
+        position={[0, -1, 0]}
+        scale={10}
+        rotation-x={-Math.PI / 2}
+      >
+        <planeGeometry />
+        <meshStandardMaterial color="lightgreen" side={THREE.DoubleSide} />
+      </mesh> */}
+    </>
+  );
+};
+
+const StageDemo = () => {
+  return (
+    <>
+      <OrbitControls />
+      <Stage
+        shadows={{ type: "contact", opacity: 0.2, blur: 3 }}
+        environment="sunset"
+        preset="portrait"
+        adjustCamera={false}
+        // environment="sunset"
+      >
+        <mesh>
+          <boxGeometry />
+          <meshStandardMaterial color="mediumpurple" />
+        </mesh>
+      </Stage>
     </>
   );
 };
@@ -156,11 +327,14 @@ const ThreeDemos = () => {
 
   return (
     <Canvas
-      dpr={[1, 2]}
-      gl={{ antialias: true }}
+      // dpr={[1, 2]}
+      // gl={{ antialias: true }}
+      shadows
       camera={{ position: [0, 3, 6] }}
     >
-      <Environment />
+      {/*   <EnvironmentDemo /> */}
+      {/* <StageDemo /> */}
+      {/* <SkyDemo /> */}
     </Canvas>
   );
 };
