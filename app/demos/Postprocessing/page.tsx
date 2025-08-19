@@ -1,12 +1,25 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import {
+  EffectComposer,
+  ToneMapping,
+  Bloom,
+  Vignette,
+} from "@react-three/postprocessing";
+import { ToneMappingMode } from "postprocessing";
+import { Perf } from "r3f-perf";
 
 import "./page.css";
 
 const Experience = () => {
   return (
     <>
+      <EffectComposer>
+        <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
+        {/* <Bloom /> */}
+        {/* <Vignette /> */}
+      </EffectComposer>
       <OrbitControls />
       <ambientLight intensity={1.5} />
       <directionalLight position={[1, 2, 3]} intensity={4.5} />
@@ -25,13 +38,14 @@ const Experience = () => {
     </>
   );
 };
+
 const Postprocessing = () => {
   return (
     <Canvas>
       <Experience />
+      <Perf position="top-left" />
     </Canvas>
   );
-  return <div>Postprocessing</div>;
 };
 
 export default Postprocessing;

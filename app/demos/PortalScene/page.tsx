@@ -34,6 +34,7 @@ const SceneDemo = () => {
   const portalMaterialRef = useRef<THREE.ShaderMaterial>(null);
 
   texture.flipY = false;
+
   console.log(nodes);
 
   // @ts-ignore
