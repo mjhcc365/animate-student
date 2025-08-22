@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { useRef, useState } from "react";
-import { RigidBody } from "@react-three/rapier";
+import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, KeyboardControls } from "@react-three/drei";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -188,7 +188,7 @@ const getRandomBlock = () => {
 
 const Bounds = ({ length = 5 }: { length: number }) => {
   return (
-    <>
+    <RigidBody type="fixed" restitution={0.2} friction={0}>
       <mesh
         castShadow
         geometry={boxGeometry}
@@ -210,7 +210,13 @@ const Bounds = ({ length = 5 }: { length: number }) => {
         scale={[4, 1.5, 0.3]}
         castShadow
       />
-    </>
+      <CuboidCollider
+        args={[2, 0.1, 2 * length]}
+        position={[0, -0.1, -(length * 2) + 2]}
+        restitution={0.2}
+        friction={1}
+      />
+    </RigidBody>
   );
 };
 
