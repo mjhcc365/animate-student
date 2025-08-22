@@ -9,6 +9,7 @@ import { Physics } from "@react-three/rapier";
 import Level from "./Level";
 import Lights from "./Lights";
 import Player from "./Player";
+import Interface from "./Interface";
 
 import "./index.css";
 
@@ -32,9 +33,9 @@ const Page = () => {
           position: [2.5, 4, 6],
         }}
       >
-        <color attach="background" args={["#FFFFF1"]} />
+        <color args={["#bdedfc"]} attach="background" />
         {/* makeDefault 确保只有一个控制器处于活动状态 */}
-        <OrbitControls makeDefault />
+        {/* <OrbitControls makeDefault /> */}
         <Perf position="top-left" />
         <Physics debug>
           <Lights />
@@ -42,6 +43,7 @@ const Page = () => {
           <Player />
         </Physics>
       </Canvas>
+      <Interface />
     </KeyboardControls>
   );
 };

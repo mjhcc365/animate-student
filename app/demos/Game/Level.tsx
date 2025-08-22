@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { useRef, useState } from "react";
 import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, KeyboardControls } from "@react-three/drei";
+import { useGLTF, Float, Text } from "@react-three/drei";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -26,6 +26,19 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 const BlockStart = ({ position = [0, 0, 0] }) => {
   return (
     <group position={position as any}>
+      {/* <Float> */}
+      <Text
+        scale={0.5}
+        maxWidth={0.25}
+        lineHeight={0.75}
+        textAlign="right"
+        position={[1.25, 0.65, 0]}
+        rotation-y={-0.25}
+      >
+        START
+        <meshBasicMaterial toneMapped={false} />
+      </Text>
+      {/* </Float> */}
       <mesh
         geometry={boxGeometry}
         material={floor1Material}
@@ -168,6 +181,10 @@ function BlockEnd({ position = [0, 0, 0] }) {
       >
         <primitive object={model.scene} scale={HAMBURGER_SCALE} />
       </RigidBody>
+      <Text scale={8} scale={8} position={[0, 2.25, 2]}>
+        FINISH
+        <meshBasicMaterial toneMapped={false} />
+      </Text>
       <mesh
         receiveShadow
         geometry={boxGeometry}
