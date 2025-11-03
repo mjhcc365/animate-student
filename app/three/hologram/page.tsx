@@ -5,7 +5,6 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 import vertexShader from "./vertex.glsl";
 import fragmentShader from "./fragment.glsl";
-import { shaderMaterial } from "@react-three/drei";
 
 export default function ThreeBasicDemo() {
   const mountRef = useRef<HTMLDivElement>(null);
