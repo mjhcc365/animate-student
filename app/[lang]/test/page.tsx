@@ -12,7 +12,6 @@ export default async function TestPage({ params }: TestPageProps) {
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">国际化测试页面</h1>
-
         <div className="space-y-6">
           <div className="bg-stone-800 p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">当前语言信息</h2>

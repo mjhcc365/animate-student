@@ -1,7 +1,7 @@
 // app/three/basic/index.tsx
-'use client';
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+"use client";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 export default function ThreeBasicDemo() {
   const mountRef = useRef<HTMLDivElement>(null);
