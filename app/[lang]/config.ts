@@ -1,6 +1,6 @@
 export const demos = [
   {
-    path: "/demos/Rainbow",
+    path: "/gsap/Rainbow",
     name: "Rainbow Demo",
     category: "CSS Animations",
     description: "彩虹色彩动画效果展示",
@@ -8,7 +8,7 @@ export const demos = [
     isNew: true,
   },
   {
-    path: "/demos/AirPods",
+    path: "/gsap/AirPods",
     name: "AirPods Demo",
     category: "Product Showcase",
     description: "AirPods产品展示动画",
@@ -16,7 +16,7 @@ export const demos = [
     isNew: true,
   },
   {
-    path: "/demos/Baisc",
+    path: "/gsap/Baisc",
     name: "Basic Demo",
     category: "Fundamentals",
     description: "基础动画效果演示",
@@ -24,7 +24,7 @@ export const demos = [
     isNew: true,
   },
   {
-    path: "/demos/NavLink",
+    path: "/gsap/NavLink",
     name: "NavLink Demo",
     category: "Navigation",
     description: "导航链接动画效果",
@@ -32,26 +32,26 @@ export const demos = [
     isNew: false,
   },
   {
-    path: "/demos/Parallax",
+    path: "/gsap/Parallax",
     name: "Parallax Demo",
     category: "Scroll Effects",
     description: "视差滚动效果演示",
     date: "2 WEEKS AGO",
     isNew: false,
   },
+];
+
+export const threeDemos = [
   {
-    path: "/demos/ThreeDemos",
+    path: "/journey/ThreeDemos",
     name: "Three.js Demos",
     category: "3D Graphics",
     description: "Three.js 3D图形演示",
     date: "3 WEEKS AGO",
     isNew: false,
   },
-];
-
-export const threeDemos = [
   {
-    path: "/three/basic",
+    path: "/journey/basic",
     name: "Three.js Basic",
     category: "3D Fundamentals",
     description: "Three.js基础场景",
@@ -59,7 +59,7 @@ export const threeDemos = [
     isNew: true,
   },
   {
-    path: "/three/sea",
+    path: "/journey/sea",
     name: "Ocean Scene",
     category: "Shader Effects",
     description: "海洋波浪着色器效果",
@@ -67,7 +67,7 @@ export const threeDemos = [
     isNew: false,
   },
   {
-    path: "/three/shader",
+    path: "/journey/shader",
     name: "Shader Patterns",
     category: "GLSL Shaders",
     description: "GLSL着色器图案集合",
