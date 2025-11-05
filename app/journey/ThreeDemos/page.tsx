@@ -28,7 +28,7 @@ import {
 import { useRef, useEffect, useMemo, Suspense, useState } from "react";
 import { useControls } from "leva";
 import { Perf } from "r3f-perf";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import "./page.css";
 
