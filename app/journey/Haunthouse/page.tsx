@@ -4,18 +4,6 @@ import * as THREE from "three";
 import { Timer } from "three/addons/misc/Timer.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Sky } from "three/addons/objects/Sky.js";
-// const floorColorTexture = textureLoader.load(
-//   "./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.webp"
-// );
-// const floorARMTexture = textureLoader.load(
-//   "./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.webp"
-// );
-// const floorNormalTexture = textureLoader.load(
-//   "./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.webp"
-// );
-// const floorDisplacementTexture = textureLoader.load(
-//   "./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.webp"
-// );
 
 export default function HaunthouseDemo() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -166,8 +154,9 @@ export default function HaunthouseDemo() {
       0.1,
       1000
     );
-    camera.position.z = 5;
-    camera.position.y = 5;
+    camera.position.z = 10;
+    camera.position.y = 4;
+    camera.position.x = 5.5;
     camera.lookAt(0, 0, 0);
 
     // 渲染器
@@ -179,6 +168,12 @@ export default function HaunthouseDemo() {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true; // 启用阻尼效果，使动画更平滑
     controls.dampingFactor = 0.05; // 阻尼系数
+    // 固定y轴视角，使相机不能上下旋转
+    controls.minPolarAngle = Math.PI / 4;
+    controls.maxPolarAngle = Math.PI / 2.2;
+    // 可选：禁用y轴平移
+    controls.screenSpacePanning = false;
+    controls.enablePan = false;
 
     // 添加网格辅助线以便于可视化
     // const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
