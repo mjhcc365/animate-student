@@ -17,7 +17,8 @@ export default function ThreeBasicDemo() {
     scene.background = new THREE.Color(0xff0000);
     // 相机
     const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
-    camera.position.z = 5;
+    // camera.position.z = 2;
+    camera.position.set(2, 2, 2);
     // 渲染器
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(600, 400);
@@ -50,57 +51,46 @@ export default function ThreeBasicDemo() {
     bakedTexture.colorSpace = THREE.SRGBColorSpace;
 
     // 加载模型
-    gltfLoader.load(
-      "/journey/resources/scene/portal.glb",
-      (gltf: THREE.GLTF) => {
-        // // Baked material
-        const bakedMaterial = new THREE.MeshBasicMaterial({
-          map: bakedTexture,
-        });
+    gltfLoader.load("/journey/resources/scene/portal.glb", (gltf: any) => {
+      // // Baked material
+      const bakedMaterial = new THREE.MeshBasicMaterial({
+        map: bakedTexture,
+      });
 
-        // Portal light material
-        const portalLightMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffffff,
-        });
+      // Portal light material
+      const portalLightMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+      });
 
-        // Pole light material
-        const poleLightMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffffe5,
-        });
+      // Pole light material
+      const poleLightMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffffe5,
+      });
 
-        const bakedMesh = gltf.scene.children.find(
-          (child) => child.name === "baked"
-        );
-        const portalLightMesh = gltf.scene.children.find(
-          (child: THREE.Object3D) => child.name === "portalLight"
-        ) as THREE.Mesh;
-        const poleLightAMesh = gltf.scene.children.find(
-          (child: THREE.Object3D) => child.name === "poleLightA"
-        ) as THREE.Mesh;
-        const poleLightBMesh = gltf.scene.children.find(
-          (child: THREE.Object3D) => child.name === "poleLightB"
-        ) as THREE.Mesh;
+      const bakedMesh = gltf.scene.children.find(
+        (child: THREE.Object3D) => child.name === "baked"
+      );
+      const portalLightMesh = gltf.scene.children.find(
+        (child: THREE.Object3D) => child.name === "portalLight"
+      ) as THREE.Mesh;
+      const poleLightAMesh = gltf.scene.children.find(
+        (child: THREE.Object3D) => child.name === "poleLightA"
+      ) as THREE.Mesh;
+      const poleLightBMesh = gltf.scene.children.find(
+        (child: THREE.Object3D) => child.name === "poleLightB"
+      ) as THREE.Mesh;
 
-        bakedMesh.material = bakedMaterial;
-        portalLightMesh.material = portalLightMaterial;
-        poleLightAMesh.material = poleLightMaterial;
-        poleLightBMesh.material = poleLightMaterial;
+      bakedMesh.material = bakedMaterial;
+      portalLightMesh.material = portalLightMaterial;
+      poleLightAMesh.material = poleLightMaterial;
+      poleLightBMesh.material = poleLightMaterial;
 
-        scene.add(gltf.scene);
-        // 设置模型引用
-        portalModel = gltf.scene;
+      scene.add(gltf.scene);
+      // 设置模型引用
+      portalModel = gltf.scene;
 
-        console.log("Portal model loaded successfully");
-      },
-      (xhr: ProgressEvent<XMLHttpRequestEventTarget>) => {
-        // 加载进度
-        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-      },
-      (error: Error) => {
-        // 加载错误
-        console.error("Error loading model:", error);
-      }
-    );
+      console.log("Portal model loaded successfully");
+    });
 
     // 挂载到 DOM
     if (mountRef.current) {
