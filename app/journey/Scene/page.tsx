@@ -7,14 +7,22 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+import firefliesVertexShader from "./shaders/vertex.glsl";
+import firefliesFragmentShader from "./shaders/fragment.glsl";
+
 export default function ThreeBasicDemo() {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 确保只在客户端环境中执行THREE.js相关代码
+    if (typeof window === "undefined") {
+      return;
+    }
+
     // 场景
     const scene = new THREE.Scene();
-    // 设置红色背景
-    scene.background = new THREE.Color(0xff0000);
+    // 设置背景颜色
+    scene.background = new THREE.Color("#201919");
     // 相机
     const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
     // camera.position.z = 2;
@@ -105,6 +113,35 @@ export default function ThreeBasicDemo() {
       // 限制垂直旋转范围
       controls.minPolarAngle = 0;
       controls.maxPolarAngle = Math.PI;
+    }
+
+    // 添加萤火虫（在客户端环境中执行）
+    let firefliesPoints: THREE.Points | null = null;
+
+    // 确保在客户端环境中执行随机数生成和萤火虫创建
+    if (typeof window !== "undefined") {
+      const fireflyGeometry = new THREE.BufferGeometry();
+      const firefliesCount = 30;
+      // 萤火虫顶点位置
+      const fireflyPositions = new Float32Array(firefliesCount * 3);
+      for (let i = 0; i < firefliesCount; i++) {
+        fireflyPositions[i * 3] = Math.random() * 4; // x
+        fireflyPositions[i * 3 + 1] = Math.random() * 4; // y
+        fireflyPositions[i * 3 + 2] = Math.random() * 4; // z
+      }
+      fireflyGeometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(fireflyPositions, 3)
+      );
+
+      const firefliesMaterial = new THREE.ShaderMaterial({
+        vertexShader: firefliesVertexShader,
+        fragmentShader: firefliesFragmentShader,
+        transparent: true,
+      });
+
+      firefliesPoints = new THREE.Points(fireflyGeometry, firefliesMaterial);
+      scene.add(firefliesPoints);
     }
 
     // 动画
